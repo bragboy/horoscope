@@ -1,6 +1,6 @@
 # Horoscope
 
-TODO: Write a gem description
+Calculate the accurate horoscope of a person using Vedic Horoscope technique given the birth time and birth place of the subject.
 
 ## Installation
 
@@ -16,9 +16,6 @@ Or install it yourself as:
 
     $ gem install horoscope
 
-## Usage
-
-TODO: Write usage instructions here
 
 ## Contributing
 
