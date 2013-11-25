@@ -2,7 +2,6 @@ class Planet
   J2000 = 2451545.0
   ASC, SUN, MON, MAR, MER, JUP, VEN, SAT, RAH, KET = [0,1,2,3,4,5,6,7,8,9]
 
-  #Tested
   def self.get_jul_day(month, day, year)
     im = 12 * (year + 4800) + month - 3
     july_day = (2 * (im % 12) + 7 + 365 * im) / 12
@@ -11,7 +10,6 @@ class Planet
     july_day
   end
 
-  #Tested
   def self.get_terms(pp, num, t)
     v = 0.0
     (0..(num/3-1)).each do |i|
@@ -23,7 +21,6 @@ class Planet
     v
   end
 
-  #Tested
   def self.get_planet(t, pol, lrg, tlist, tnum)
     u = t/10.0
     (0..2).each do |i|
@@ -45,7 +42,6 @@ class Planet
     end
   end
 
-  #Tested
   def self.hel2geo(pol, spol)
     l = pol[0]
     b = pol[1]
@@ -60,7 +56,6 @@ class Planet
     lon
   end
 
-  #Tested
   def self.get_lunar(t)
     t2 = t * t;
     l = 218.31665436 + 481267.8813424 * t - 0.0013268 * t2 + 1.856E-6 * (t * t2)
@@ -92,7 +87,6 @@ class Planet
     l %= 360.0
   end
 
-  #Tested
   def self.get_node(t, mean)
     lon = 0.0;
     n = 125.0446 - 1934.13618 * t + 0.0020762 * (t * t) + 2.139E-6 * (t * t * t)
@@ -120,14 +114,12 @@ class Planet
     lon
   end
 
-  #Tested
   def self.get_ayan(t)
     ayan = (5029.0 + 1.11 * t) * t + 85886.0
     ayan /= 3600.0
     -ayan
   end
 
-  #Tested
   def self.ascendant(t, tod, lg, lt)
     ra = (246.697374558 + 2400.0513 * t + tod) * 15.0 - lg
     ra %= 360.0
@@ -141,7 +133,6 @@ class Planet
     return Math.toDegrees(as)
   end
 
-  #Tested
   def self.range(lon)
     Math.toDegrees(lon) % 360.0
   end
@@ -226,7 +217,7 @@ class Planet
     pos[KET] = lon
   end
 
-  def get_planets(t, pps, sps)
+  def self.get_planets(t, pps, sps)
     spd = Array.new(10, 0.0)
     planets(t, pps)
     hourbefore = t - 1.1407711613050422E-6
@@ -235,61 +226,10 @@ class Planet
       spd[i] = pps[i] - spd[i]
       spd[i] -= 360.0 if spd[i] > 360.0
       spd[i] *= 24.0
-      sps[i] = spd[i] % 360.0
-      sps[i] += 360.0
+      sps[i] = Math.java_mod(spd[i], 360.0)
+      sps[i] += 360.0 if sps[i] > 0.0
     end
     spd[2] += 360.0 if spd[2] < 0.0
   end
 
-  def jd2date(xjd)
-    z = xjd.to_i
-    x = ((z - 1867216.25) / 36524.25).to_i
-    a = z + 1 + x - x / 4
-    b = a + 1524
-    c = ((b - 122.1) / 365.25).to_i
-    d = (365.25 * c).to_i
-    e = ((b - d) / 30.6001).to_i
-    dy = b - d - (30.6001 * e).to_i
-    m = 0;
-    if e < 14
-        m = e - 1
-    else
-        m = e - 13
-    end
-    yr = 0;
-    if m > 2
-        yr = c - 4716
-    else
-        yr = c - 4715
-    end
-    return String.format("%2d %2d, %d", m, dy, yr);
-  end
-    
-
-    static String jd2date(final double xjd) {
-        final int z = (int)xjd;
-        final int x = (int)((z - 1867216.25) / 36524.25);
-        final int a = z + 1 + x - x / 4;
-        final int b = a + 1524;
-        final int c = (int)((b - 122.1) / 365.25);
-        final int d = (int)(365.25 * c);
-        final int e = (int)((b - d) / 30.6001);
-        final int dy = b - d - (int)(30.6001 * e);
-        int m = 0;
-        if (e < 14) {
-            m = e - 1;
-        }
-        else {
-            m = e - 13;
-        }
-        int yr = 0;
-        if (m > 2) {
-            yr = c - 4716;
-        }
-        else {
-            yr = c - 4715;
-        }
-        return String.format("%2d %2d, %d", m, dy, yr);
-    }
-    
 end
