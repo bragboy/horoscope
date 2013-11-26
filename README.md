@@ -8,6 +8,14 @@ Add this line to your application's Gemfile:
 
     gem 'horoscope'
     
+And then execute:
+
+    $ bundle
+
+Or install it yourself as:
+
+    $ gem install horoscope
+    
 Then you can start using this by passing a Time object along with latitude and longitude
     
     #To calculate Sachin Tendulkar's horoscope
@@ -16,14 +24,6 @@ Then you can start using this by passing a Time object along with latitude and l
         :lat => 18.60, :lon => -72.50)
   	h.compute
   	 => {"As"=>4, "Su"=>0, "Mo"=>8, "Ma"=>9, "Me"=>11, "Ju"=>9, "Ve"=>0, "Sa"=>1, "Ra"=>8, "Ke"=>2}
-
-And then execute:
-
-    $ bundle
-
-Or install it yourself as:
-
-    $ gem install horoscope
 
 
 ## Contributing
