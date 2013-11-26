@@ -69,7 +69,7 @@ describe Horoscope do
   end
 
   it "can generate chart" do
-    h = Horoscope::Horo.new(:datetime => Time.mktime(1973, 4, 24, 14, 25).getlocal("+05:30"), :lat => 18.60, :lon => -72.50)
+    h = Horoscope::Horo.new(:datetime => Time.utc(1973, 4, 24, 14, 25), :zone => 5.5, :lat => 18.60, :lon => -72.50)
     h.compute
     h.create_chart
     expect(File).to exist("output.png") 
