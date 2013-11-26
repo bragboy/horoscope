@@ -27,6 +27,7 @@ module Horoscope
 
       @errors = []
 
+      @computed = false
       @datetime = data[:datetime]
       @zone = data[:offset]
       @lat = data[:lat]
@@ -66,11 +67,12 @@ module Horoscope
           end
         end
       end
+      @computed = true
       return @positions
     end
 
     def create_chart(options={})
-      self.compute
+      self.compute unless @computed
       base_chart = Magick::ImageList.new('assets/south_chart.png')
 
       canvas = Magick::ImageList.new
