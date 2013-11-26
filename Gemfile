@@ -4,3 +4,7 @@ source 'https://rubygems.org'
 gemspec
 
 gem 'rmagick'
+
+group :development, :test do
+  gem 'rake'
+end
