@@ -33,7 +33,7 @@ Then you can start using this by passing a Time object along with latitude and l
 
   	h.create_chart #This will generate the horoscope chart to your working directory
   	
-![Sachin Tendulkar's horoscope](http://i.imgur.com/xDErJxD.png)
+![Sachin Tendulkar's horoscope](http://i.imgur.com/theTdBg.png)
 
 ## Contributing
 
@@ -46,4 +46,4 @@ Then you can start using this by passing a Time object along with latitude and l
 
 ## Future Development
 
-I am currently adding features to generate charts (both South and North Indian). Also show more data like Birth Star, Dasha Directions etc., Follow this page for more updates
+Need to add North Indian Chart type. Also show more data like Birth Star, Dasha Directions etc., Follow this page for more updates

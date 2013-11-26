@@ -14,6 +14,8 @@ module Horoscope
     YBIAS = 15
     PADDING = 15
 
+    CENTER_PADDING = 40
+
     ERRORS = {
       :Date => "Error: Invalid Date. Enter a valid date between years 1600 AD and 2300 AD",
       :Zone => "Error: Please pass a valid time zone ranging from -12.0 to +12.0",
@@ -95,6 +97,14 @@ module Horoscope
           end
         end
       end
+
+      text.gravity = Magick::CenterGravity
+      text.pointsize = 18
+      text.fill = 'black'
+      text.annotate(canvas, 0, 0, 0, -CENTER_PADDING, @datetime.strftime('%d %b %Y'))
+      text.annotate(canvas, 0, 0, 0, 0, @datetime.strftime('%I:%M %p'))
+      text.annotate(canvas, 0, 0, 0, CENTER_PADDING, "Lat: #{@lat.round(1)}, Lon: #{@lon.round(1)}")
+
       x = canvas.write('output.png')
     end
 
