@@ -2,6 +2,7 @@
 
 Calculate the accurate horoscope of a person using Vedic Horoscope technique given the birth time and birth place of the subject. The gem is available at https://rubygems.org/gems/horoscope
 
+[![Travis CI   ](https://api.travis-ci.org/bragboy/horoscope.png)     ](https://travis-ci.org/bragboy/horoscope)
 [![Code Climate](https://codeclimate.com/github/bragboy/horoscope.png)](https://codeclimate.com/github/bragboy/horoscope)
 
 ## Installation
@@ -22,12 +23,13 @@ Then you can start using this by passing a Time object along with latitude and l
     
     #To calculate Sachin Tendulkar's horoscope
     h = Horoscope::Horo.new(
-        :datetime => Time.mktime(1973, 4, 24, 14, 25).getlocal("+05:30"), 
+        :datetime => Time.utc(1973, 4, 24, 14, 25), 
+        :zone => 5.5,
         :lat => 18.60, :lon => -72.50)
   	h.compute
   	 => {"As"=>4, "Su"=>0, "Mo"=>8, "Ma"=>9, "Me"=>11, "Ju"=>9, "Ve"=>0, "Sa"=>1, "Ra"=>8, "Ke"=>2}
 
-  	h.generate_chart #This will generate the horoscope chart to your working directory
+  	h.create_chart #This will generate the horoscope chart to your working directory
 
 ## Contributing
 
