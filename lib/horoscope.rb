@@ -1,7 +1,5 @@
-require "horoscope/version"
-
+require 'horoscope/version'
 module Horoscope
-
+  
 end
-
-require 'horoscope/horoscope'
+require 'horoscope/horo'

@@ -11,6 +11,7 @@ Gem::Specification.new do |gem|
   gem.description   = %q{Calculate the horoscope of a person given the birth date and time}
   gem.summary       = %q{Calculate the accurate horoscope of a person using Vedic Horoscope technique given the birth time and birth place of the subject.}
   gem.homepage      = ""
+  gem.add_development_dependency "rspec"
 
   gem.files         = `git ls-files`.split($/)
   gem.executables   = gem.files.grep(%r{^bin/}).map{ |f| File.basename(f) }
