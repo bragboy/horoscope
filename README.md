@@ -2,6 +2,8 @@
 
 Calculate the accurate horoscope of a person using Vedic Horoscope technique given the birth time and birth place of the subject. The gem is available at https://rubygems.org/gems/horoscope
 
+[![Code Climate](https://codeclimate.com/github/bragboy/horoscope.png)](https://codeclimate.com/github/bragboy/horoscope)
+
 ## Installation
 
 Add this line to your application's Gemfile:
