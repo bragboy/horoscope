@@ -1,3 +1,3 @@
-require 'horoscope'
 require 'coveralls'
 Coveralls.wear!
+require 'horoscope'
