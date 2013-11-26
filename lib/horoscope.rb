@@ -1,12 +1,18 @@
 require 'horoscope/version'
 require 'horoscope/overrides/math_override'
 require 'horoscope/planet'
-require 'rmagick'
+require 'RMagick'
 
 module Horoscope
   class Horo
 
     PLANETS = ["As", "Su", "Mo", "Ma", "Me", "Ju", "Ve", "Sa", "Ra", "Ke"]
+
+    IMG_SIZE = 440
+    SPLIT = IMG_SIZE/4
+    XBIAS = 10
+    YBIAS = 15
+    PADDING = 15
 
     ERRORS = {
       :Date => "Error: Invalid Date. Enter a valid date between years 1600 AD and 2300 AD",
@@ -14,7 +20,7 @@ module Horoscope
       :Lon  => "Error: Invalid Longitude. Enter between -180.0 to +180.0"
     }
 
-    attr_accessor :datetime, :lat, :lon, :errors, :positions
+    attr_accessor :datetime, :lat, :lon, :errors, :positions, :positions_rev
 
     def initialize(data={})
       @data = data
@@ -26,6 +32,7 @@ module Horoscope
       @lat = data[:lat]
       @lon = data[:lon]
       @positions = Hash[PLANETS.map {|x| [x, nil]}]
+      @positions_rev = [[], [], [], [], [], [], [], [], [], [], [], []]
     end
 
     def compute
@@ -50,16 +57,42 @@ module Horoscope
         end
         tsp[i] = (spd[i] * 3600.0).to_i
       end
+      count = 0
       (0..11).each do |i|
         (0..9).each do |j|
-          @positions[PLANETS[j]] = i if (tpos[j] / 1800 == i)
+          if (tpos[j] / 1800 == i)
+            @positions[PLANETS[j]] = i 
+            @positions_rev[i] << PLANETS[j]
+          end
         end
       end
       return @positions
     end
 
     def create_chart(options={})
-      base_chart = Magick::ImageList.new('../assets/south_chart.png')
+      self.compute
+      base_chart = Magick::ImageList.new('assets/south_chart.png')
+
+      canvas = Magick::ImageList.new
+      canvas.new_image(IMG_SIZE, IMG_SIZE, Magick::TextureFill.new(base_chart))
+
+      draw_x = [XBIAS+SPLIT, XBIAS+SPLIT*2, XBIAS+SPLIT*3, XBIAS+SPLIT*3, XBIAS+SPLIT*3, XBIAS+SPLIT*3, XBIAS+SPLIT*2, XBIAS+SPLIT, XBIAS, XBIAS, XBIAS, XBIAS, XBIAS]
+      draw_y = [YBIAS, YBIAS, YBIAS, YBIAS+SPLIT, YBIAS+SPLIT*2, YBIAS+SPLIT*3, YBIAS+SPLIT*3, YBIAS+SPLIT*3, YBIAS+SPLIT*3, YBIAS+SPLIT*2, YBIAS+SPLIT, YBIAS]
+
+      text = Magick::Draw.new
+      text.pointsize = 14
+      text.font_family = 'helvetica'
+
+      @positions_rev.each_with_index do |this_pos, i|
+        unless this_pos.empty?
+          this_pos.each_with_index do |planet, j|
+            text.annotate(canvas, 0, 0, draw_x[i], draw_y[i] + j * PADDING, planet) {
+              self.fill = planet == PLANETS[0] ? 'red' : 'black'
+            }
+          end
+        end
+      end
+      x = canvas.write('output.png')
     end
 
     private

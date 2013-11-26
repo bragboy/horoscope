@@ -1,4 +1,5 @@
 require 'spec_helper'
+require 'ruby-debug'
 
 describe Horoscope do
   it "should error out for blanks" do
@@ -49,5 +50,12 @@ describe Horoscope do
   	h.lat = h.lon = 0
   	h.compute
   	expect(h.errors).to eql([])
+  end
+
+  it "can generate chart" do
+    h = Horoscope::Horo.new(:datetime => Time.mktime(1973, 4, 24, 14, 25).getlocal("+05:30"), :lat => 18.60, :lon => -72.50)
+    h.compute
+    h.create_chart
+    expect(File).to exist("output.png") 
   end
 end
