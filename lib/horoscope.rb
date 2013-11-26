@@ -1,6 +1,7 @@
 require 'horoscope/version'
 require 'horoscope/overrides/math_override'
 require 'horoscope/planet'
+require 'rmagick'
 
 module Horoscope
   class Horo
@@ -55,6 +56,10 @@ module Horoscope
         end
       end
       return @positions
+    end
+
+    def create_chart(options={})
+      base_chart = Magick::ImageList.new('../assets/south_chart.png')
     end
 
     private

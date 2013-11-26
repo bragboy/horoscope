@@ -10,8 +10,10 @@ Gem::Specification.new do |gem|
   gem.email         = ["bragboy@gmail.com"]
   gem.description   = %q{Calculate the horoscope of a person given the birth date and time}
   gem.summary       = %q{Calculate the accurate horoscope of a person using Vedic Horoscope technique given the birth time and birth place of the subject.}
-  gem.homepage      = ""
+  gem.homepage      = "https://github.com/bragboy/horoscope"
+  
   gem.add_development_dependency "rspec"
+  gem.add_dependency "rmagick"
 
   gem.files         = `git ls-files`.split($/)
   gem.executables   = gem.files.grep(%r{^bin/}).map{ |f| File.basename(f) }
