@@ -32,6 +32,8 @@ Then you can start using this by passing a Time object along with latitude and l
   	 => {"As"=>4, "Su"=>0, "Mo"=>8, "Ma"=>9, "Me"=>11, "Ju"=>9, "Ve"=>0, "Sa"=>1, "Ra"=>8, "Ke"=>2}
 
   	h.create_chart #This will generate the horoscope chart to your working directory
+  	
+![Sachin Tendulkar's horoscope](http://i.imgur.com/xDErJxD.png)
 
 ## Contributing
 
