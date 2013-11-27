@@ -6,6 +6,7 @@ Calculate the accurate horoscope of a person using Vedic Horoscope technique giv
 [![Code Climate](https://codeclimate.com/github/bragboy/horoscope.png)](https://codeclimate.com/github/bragboy/horoscope)
 [![Gemnasium   ](https://gemnasium.com/bragboy/horoscope.png)           ](https://gemnasium.com/bragboy/horoscope)
 [![Coveralls   ](https://coveralls.io/repos/bragboy/horoscope/badge.png)](https://coveralls.io/r/bragboy/horoscope)
+[![Gem Version](https://badge.fury.io/rb/horoscope.png)](http://badge.fury.io/rb/horoscope)
 
 ## Installation
 
