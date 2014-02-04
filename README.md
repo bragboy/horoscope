@@ -34,6 +34,8 @@ Then you can start using this by passing a Time object along with latitude and l
 
   	h.create_chart #This will generate the horoscope chart to your working directory
   	
+  	h.create_chart format: :html #This will generate the horoscope chart as html text and can be embedded onto any html container
+  	
 ![Sachin Tendulkar's horoscope](http://i.imgur.com/theTdBg.png)
 
 ## Contributing
