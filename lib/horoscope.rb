@@ -4,6 +4,10 @@ require 'horoscope/planet'
 require 'RMagick'
 
 module Horoscope
+  def self.root
+    File.expand_path '../..', __FILE__
+  end
+
   class Horo
 
     PLANETS = ["As", "Su", "Mo", "Ma", "Me", "Ju", "Ve", "Sa", "Ra", "Ke"]
@@ -74,9 +78,46 @@ module Horoscope
       return @positions
     end
 
-    def create_chart(options={})
-      self.compute unless @computed
-      base_chart = Magick::ImageList.new('assets/south_chart.png')
+    def create_chart(options= {})
+      compute unless @computed
+      case options[:format]
+      when :html
+        draw_chart_as_html
+      else
+        draw_chart_as_png
+      end
+    end
+
+    private
+
+    def draw_chart_as_html
+      "<table style = \"text-align:center;width:100%;height:100%;\" border = \"1\"> \
+          <tr>                                                           \
+            <td style = \"width:25%\">#{get_planets_at(11)}</td>         \
+            <td style = \"width:25%\">#{get_planets_at(0)}</td>          \
+            <td style = \"width:25%\">#{get_planets_at(1)}</td>          \
+            <td style = \"width:25%\">#{get_planets_at(2)}</td>          \
+          </tr>                                                          \
+          <tr>                                                           \
+            <td style = \"width:25%\">#{get_planets_at(10)}</td>         \
+            <td colspan = \"2\" rowspan = \"2\">#{date_time_info}</td>   \
+            <td style = \"width:25%\">#{get_planets_at(3)}</td>          \
+          </tr>                                                          \
+          <tr>                                                           \
+            <td style = \"width:25%\">#{get_planets_at(9)}</td>          \
+            <td style = \"width:25%\">#{get_planets_at(4)}</td>          \
+          </tr>                                                          \
+          <tr>                                                           \
+            <td style = \"width:25%\">#{get_planets_at(8)}</td>          \
+            <td style = \"width:25%\">#{get_planets_at(7)}</td>          \
+            <td style = \"width:25%\">#{get_planets_at(6)}</td>          \
+            <td style = \"width:25%\">#{get_planets_at(5)}</td>          \
+          </tr>                                                          \
+        </table>"
+    end
+
+    def draw_chart_as_png
+      base_chart = Magick::ImageList.new("#{Horoscope.root}/assets/south_chart.png")
 
       canvas = Magick::ImageList.new
       canvas.new_image(IMG_SIZE, IMG_SIZE, Magick::TextureFill.new(base_chart))
@@ -108,8 +149,6 @@ module Horoscope
       x = canvas.write('output.png')
     end
 
-    private
-
     def validate_values
       @errors = []
       @errors << ERRORS[:Date] if @datetime.nil? || !@datetime.is_a?(Time) || @datetime.year > 2300 || @datetime.year < 1600
@@ -119,5 +158,14 @@ module Horoscope
       @errors
     end
 
+    def get_planets_at(position)
+      @positions_rev[position].join('<br/>')
+    end
+
+    def date_time_info
+      "#{ @datetime.strftime('%d %b %Y') } <br/> \
+       #{ @datetime.strftime('%I:%M %p') } <br/> \
+       Lat: #{@lat.round(1)}, Lon: #{@lon.round(1)}"
+    end
   end
 end
