@@ -4,6 +4,7 @@ source 'https://rubygems.org'
 gemspec
 
 gem 'rmagick'
+gem 'erubis'
 
 group :development, :test do
   gem 'rake'

@@ -78,6 +78,11 @@ describe Horoscope do
     it "can generate chart as html" do
     h = Horoscope::Horo.new(:datetime => Time.utc(1973, 4, 24, 14, 25), :zone => 5.5, :lat => 18.60, :lon => -72.50)
     h.compute
-    expect(h.create_chart format: :html).to eql('<table style = "text-align:center;width:100%;height:100%;" border = "1">           <tr>                                                                       <td style = "width:25%">Me</td>                     <td style = "width:25%">Su<br/>Ve</td>                      <td style = "width:25%">Sa</td>                      <td style = "width:25%">Ke</td>                    </tr>                                                                    <tr>                                                                       <td style = "width:25%"></td>                     <td colspan = "2" rowspan = "2">24 Apr 1973 <br/>        02:25 PM <br/>        Lat: 18.6, Lon: -72.5</td>               <td style = "width:25%"></td>                    </tr>                                                                    <tr>                                                                       <td style = "width:25%">Ma<br/>Ju</td>                      <td style = "width:25%">As</td>                    </tr>                                                                    <tr>                                                                       <td style = "width:25%">Mo<br/>Ra</td>                      <td style = "width:25%"></td>                      <td style = "width:25%"></td>                      <td style = "width:25%"></td>                    </tr>                                                                  </table>')
+    chart_html = h.create_chart format: :html
+    chart_html.should match("<td style = \"width:25%\" cell_index = \"0\">Su<br/>Ve</td>")
+    chart_html.should match("<td style = \"width:25%\" cell_index = \"4\">As</td>")
+    chart_html.should match("<td style = \"width:25%\" cell_index = \"11\">Me</td>")
+    chart_html.should match("<td style = \"width:25%\" cell_index = \"1\">Sa</td>")
+    chart_html.should match("<td style = \"width:25%\" cell_index = \"8\">Mo<br/>Ra</td>")
   end
 end

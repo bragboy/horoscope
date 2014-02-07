@@ -1,0 +1,23 @@
+<table style = "text-align:center;width:100%;height:100%;" border = "1"> 
+  <tr>                                                           
+    <td style = "width:25%" cell_index = "11"><%= get_planets_at(11) %></td>         
+    <td style = "width:25%" cell_index = "0"><%= get_planets_at(0) %></td>          
+    <td style = "width:25%" cell_index = "1"><%= get_planets_at(1) %></td>          
+    <td style = "width:25%" cell_index = "2"><%= get_planets_at(2) %></td>          
+  </tr>                                                          
+  <tr>                                                           
+    <td style = "width:25%" cell_index = "10"><%= get_planets_at(10) %></td>         
+    <td colspan = "2" rowspan = "2"><%= date_time_info %></td>   
+    <td style = "width:25%" cell_index = "3"><%= get_planets_at(3) %></td>          
+  </tr>                                                          
+  <tr>                                                           
+    <td style = "width:25%" cell_index = "9"><%= get_planets_at(9) %></td>          
+    <td style = "width:25%" cell_index = "4"><%= get_planets_at(4) %></td>          
+  </tr>                                                          
+  <tr>                                                           
+    <td style = "width:25%" cell_index = "8"><%= get_planets_at(8) %></td>          
+    <td style = "width:25%" cell_index = "7"><%= get_planets_at(7) %></td>          
+    <td style = "width:25%" cell_index = "6"><%= get_planets_at(6) %></td>          
+    <td style = "width:25%" cell_index = "5"><%= get_planets_at(5) %></td>          
+  </tr>                                                          
+</table>

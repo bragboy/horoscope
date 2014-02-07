@@ -2,6 +2,7 @@ require 'horoscope/version'
 require 'horoscope/overrides/math_override'
 require 'horoscope/planet'
 require 'RMagick'
+require 'erubis'
 
 module Horoscope
   def self.root
@@ -91,29 +92,8 @@ module Horoscope
     private
 
     def draw_chart_as_html
-      "<table style = \"text-align:center;width:100%;height:100%;\" border = \"1\"> \
-          <tr>                                                           \
-            <td style = \"width:25%\">#{get_planets_at(11)}</td>         \
-            <td style = \"width:25%\">#{get_planets_at(0)}</td>          \
-            <td style = \"width:25%\">#{get_planets_at(1)}</td>          \
-            <td style = \"width:25%\">#{get_planets_at(2)}</td>          \
-          </tr>                                                          \
-          <tr>                                                           \
-            <td style = \"width:25%\">#{get_planets_at(10)}</td>         \
-            <td colspan = \"2\" rowspan = \"2\">#{date_time_info}</td>   \
-            <td style = \"width:25%\">#{get_planets_at(3)}</td>          \
-          </tr>                                                          \
-          <tr>                                                           \
-            <td style = \"width:25%\">#{get_planets_at(9)}</td>          \
-            <td style = \"width:25%\">#{get_planets_at(4)}</td>          \
-          </tr>                                                          \
-          <tr>                                                           \
-            <td style = \"width:25%\">#{get_planets_at(8)}</td>          \
-            <td style = \"width:25%\">#{get_planets_at(7)}</td>          \
-            <td style = \"width:25%\">#{get_planets_at(6)}</td>          \
-            <td style = \"width:25%\">#{get_planets_at(5)}</td>          \
-          </tr>                                                          \
-        </table>"
+      input = File.read('views/horoscope_chart_html.eruby')
+      eval Erubis::Eruby.new.convert(input)
     end
 
     def draw_chart_as_png
