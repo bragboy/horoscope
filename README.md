@@ -10,7 +10,7 @@ Calculate the accurate horoscope of a person using Vedic Horoscope technique giv
 
 ## Installation
 
-Add this line to your application's Gemfile:
+Add this line to your application's Gemfile (Rails):
 
     gem 'horoscope'
     
