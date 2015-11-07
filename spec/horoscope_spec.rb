@@ -1,5 +1,4 @@
 require 'spec_helper'
-require 'ruby-debug'
 
 describe Horoscope do
   it "should error out for blanks" do
@@ -79,10 +78,10 @@ describe Horoscope do
     h = Horoscope::Horo.new(:datetime => Time.utc(1973, 4, 24, 14, 25), :zone => 5.5, :lat => 18.60, :lon => -72.50)
     h.compute
     chart_html = h.create_chart format: :html
-    chart_html.should match("<td style = \"width:25%\" cell_index = \"0\">Su<br/>Ve</td>")
-    chart_html.should match("<td style = \"width:25%\" cell_index = \"4\">As</td>")
-    chart_html.should match("<td style = \"width:25%\" cell_index = \"11\">Me</td>")
-    chart_html.should match("<td style = \"width:25%\" cell_index = \"1\">Sa</td>")
-    chart_html.should match("<td style = \"width:25%\" cell_index = \"8\">Mo<br/>Ra</td>")
+    expect(chart_html).to match("<td style = \"width:25%\" cell_index = \"0\">Su<br/>Ve</td>")
+    expect(chart_html).to match("<td style = \"width:25%\" cell_index = \"4\">As</td>")
+    expect(chart_html).to match("<td style = \"width:25%\" cell_index = \"11\">Me</td>")
+    expect(chart_html).to match("<td style = \"width:25%\" cell_index = \"1\">Sa</td>")
+    expect(chart_html).to match("<td style = \"width:25%\" cell_index = \"8\">Mo<br/>Ra</td>")
   end
 end
