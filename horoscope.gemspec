@@ -13,7 +13,7 @@ Gem::Specification.new do |gem|
   gem.homepage      = "https://github.com/bragboy/horoscope"
   
   gem.add_development_dependency "rspec"
-  gem.add_development_dependency "debugger"
+  gem.add_development_dependency "pry-byebug"
   gem.add_dependency "rmagick"
   gem.add_dependency "erubis"
 
