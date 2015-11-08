@@ -49,4 +49,4 @@ Then you can start using this by passing a Time object along with latitude and l
 
 ## Future Development
 
-Need to add North Indian Chart type. Also show more data like Birth Star, Dasha Directions etc., Follow this page for more updates
+Need to add North Indian Chart type. Also show more data like Birth Star, Dasha directions etc., Follow this page for more updates
