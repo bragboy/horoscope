@@ -21,19 +21,19 @@ Or install it yourself as:
     $ gem install horoscope
     
 Then you can start using this by passing a Time object along with latitude and longitude
-    
-    #To calculate Sachin Tendulkar's horoscope
-    h = Horoscope::Horo.new(
-        datetime: Time.utc(1973, 4, 24, 14, 25), 
-        zone: 5.5,
-        lat: 18.60, lon: -72.50)
-  	h.compute
-  	 => {"As"=>4, "Su"=>0, "Mo"=>8, "Ma"=>9, "Me"=>11, "Ju"=>9, "Ve"=>0, "Sa"=>1, "Ra"=>8, "Ke"=>2}
+```ruby
+#To calculate Sachin Tendulkar's horoscope
+h = Horoscope::Horo.new(
+    datetime: Time.utc(1973, 4, 24, 14, 25), 
+    zone: 5.5,
+    lat: 18.60, lon: -72.50)
+h.compute
+ => {"As"=>4, "Su"=>0, "Mo"=>8, "Ma"=>9, "Me"=>11, "Ju"=>9, "Ve"=>0, "Sa"=>1, "Ra"=>8, "Ke"=>2}
 
-  	h.create_chart #This will generate the horoscope chart to your working directory
-  	
-  	h.create_chart format: :html #This will generate the horoscope chart as html text and can be embedded onto any html container
-  	
+h.create_chart #This will generate the horoscope chart to your working directory
+
+h.create_chart format: :html #This will generate the horoscope chart as html text and can be embedded onto any html container
+```  	
 ![Sachin Tendulkar's horoscope](http://i.imgur.com/theTdBg.png)
 
 ## Contributing
