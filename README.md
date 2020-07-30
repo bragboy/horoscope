@@ -9,17 +9,17 @@ Calculate the accurate horoscope of a person using Vedic Horoscope technique giv
 ## Installation
 
 Add this line to your application's Gemfile (Rails):
-
-    gem 'horoscope'
-    
+```ruby
+gem 'horoscope'
+```
 And then execute:
-
-    $ bundle
-
+```sh
+$ bundle
+```
 Or install it yourself as:
-
-    $ gem install horoscope
-    
+```ruby
+$ gem install horoscope
+```    
 Then you can start using this by passing a Time object along with latitude and longitude
 ```ruby
 #To calculate Sachin Tendulkar's horoscope
